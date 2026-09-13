@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Container Utama: Margin & Padding (Aman dari Navbar & Bisa Scroll) -->
+<div class="w-full max-w-xl mx-auto pt-24 pb-12 px-4">
+
+  <!-- Alert Error Form -->
+  {% if form.errors %}
+    <div class="p-4 mb-6 rounded-md bg-amber-50 border border-amber-300 text-amber-900 text-sm space-y-1" role="alert">
+      <p class="font-semibold">Periksa kembali form Anda:</p>
+      {% for field in form %}
+        {% if field.errors %}
+          <div class="text-amber-800 font-normal">
+            <span class="font-medium capitalize">{{ field.name }}:</span> {{ field.errors|striptags }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Form Utama -->
+  <form method="POST" action="" class="w-full space-y-4">
+    {% csrf_token %}
+
+    <!-- 1. Username Field -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input type="text" name="username" id="id_username" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="id_username" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
+      {% if form.username.help_text %}
+        <div class="mt-1.5 text-xs text-gray-600">
+          {{ form.username.help_text|safe }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- 2. Email Address Field -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input type="email" name="email" id="id_email" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="id_email" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+      {% if form.email.help_text %}
+        <div class="mt-1.5 text-xs text-gray-600">
+          {{ form.email.help_text|safe }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- 3. First Name & Last Name Grid -->
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="first_name" id="id_first_name" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+        <label for="id_first_name" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="last_name" id="id_last_name" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+        <label for="id_last_name" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
+      </div>
+    </div>
+
+    <!-- 4. Password Field -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input type="password" name="password1" id="id_password1" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="id_password1" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+      {% if form.password1.help_text %}
+        <div class="mt-1.5 text-xs text-gray-600">
+          {{ form.password1.help_text|safe }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- 5. Confirm Password Field -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input type="password" name="password2" id="id_password2" class="block py-3 px-0 w-full text-base text-black bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="id_password2" class="absolute text-base text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
+      {% if form.password2.help_text %}
+        <div class="mt-1.5 text-xs text-gray-600">
+          {{ form.password2.help_text|safe }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-4">
+      <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium text-base rounded-lg px-5 py-3 transition-all focus:outline-none cursor-pointer">
+        Submit
+      </button>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}
