@@ -1,6 +1,22 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Record
+
+class RecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ('first_name', 'last_name', 'email', 'phone', 'address', 'city', 'state', 'zipcode')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': 'John'}),
+            'last_name': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': 'Doe'}),
+            'email': forms.EmailInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': 'john@example.com'}),
+            'phone': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': '(555) 123-4567'}),
+            'address': forms.Textarea(attrs={'rows': 3, 'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': '123 Main Street'}),
+            'city': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': 'Jakarta'}),
+            'state': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': 'DKI Jakarta'}),
+            'zipcode': forms.TextInput(attrs={'class': 'block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-inset', 'placeholder': '12345'}),
+        }
 
 class Register(UserCreationForm):
     email = forms.EmailField(
