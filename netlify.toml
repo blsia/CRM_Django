@@ -1,0 +1,9 @@
+[build]
+  command = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+  publish = "staticfiles"
+  functions = "functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
