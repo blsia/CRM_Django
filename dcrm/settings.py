@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-=86w0%=2em@3(8w=fdo568lci&8_#z7p3%4osuc%c)$5&vc(7(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Izinkan domain Netlify & Localhost
+ALLOWED_HOSTS = ['.netlify.app', 'localhost', '127.0.0.1', '*']
 
 
 # Application definition
@@ -123,9 +124,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
+
+# Konfigurasi Storage untuk Django 6.x / WhiteNoise
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
 
 MAILERS = {
     'default': {
