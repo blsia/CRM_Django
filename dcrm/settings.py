@@ -124,14 +124,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 import os
 import dj_database_url
-LOCAL_DATABASE_URL = 'postgresql://neondb_owner:npg_JjeYuzKXiw60@ep-green-bread-b3p9wz73-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require'
+from dotenv import load_dotenv
 
+# Load file .env
+load_dotenv()
+
+# Ambil DATABASE_URL dari file .env
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', LOCAL_DATABASE_URL),
+        default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
     )
