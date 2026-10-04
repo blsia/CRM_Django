@@ -1,7 +1,5 @@
 Django>=6.1,<6.2
 psycopg[binary]>=3.1.8,<4.0
-gunicorn>=21.2.0
 dj-database-url>=2.1.0
 whitenoise>=6.6.0
 python-dotenv>=1.0.0
-serverless-wsgi>=3.0.0

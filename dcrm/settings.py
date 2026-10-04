@@ -125,14 +125,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Konfigurasi Storage untuk Django 6.x / WhiteNoise
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
+import os
+import dj_database_url
+LOCAL_DATABASE_URL = 'postgresql://neondb_owner:npg_JjeYuzKXiw60@ep-green-bread-b3p9wz73-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require'
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', LOCAL_DATABASE_URL),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 MAILERS = {
