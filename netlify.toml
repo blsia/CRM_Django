@@ -3,13 +3,13 @@
   publish = "staticfiles"
   functions = "functions"
 
-# Supaya file CSS/JS dari CDN maupun static folder langsung disajikan oleh Netlify
+# 1. Pengecualian untuk static files
 [[redirects]]
   from = "/static/*"
   to = "/static/:splat"
   status = 200
 
-# Mengarahkan seluruh URL aplikasi ke Serverless Function
+# 2. Tangkap semua request lain ke Serverless Function
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/server"
